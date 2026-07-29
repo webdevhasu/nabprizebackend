@@ -3,6 +3,14 @@
     {
       "path": "/api/releasePendingEarnings",
       "schedule": "0 2 * * *"
+    },
+    {
+      "path": "/api/runWeeklyLuckyDraw",
+      "schedule": "0 0 * * 0"
+    },
+    {
+      "path": "/api/updateQualificationStatus",
+      "schedule": "0 23 * * *"
     }
   ]
 }
