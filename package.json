@@ -1,0 +1,15 @@
+{
+  "name": "nabprize-backend",
+  "version": "1.0.0",
+  "description": "Backend API for NabPrize",
+  "main": "api/cpxPostback.js",
+  "scripts": {
+    "start": "node api/cpxPostback.js"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.0.0"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}
