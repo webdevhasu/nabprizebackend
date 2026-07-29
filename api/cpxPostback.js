@@ -26,7 +26,8 @@ module.exports = async function handler(req, res) {
         return res.status(405).send('Method Not Allowed');
     }
 
-    const { status, trans_id, user_id, amount_usd, hash } = req.query;
+    const { status, trans_id, user_id, amount_usd, hash, secure_hash } = req.query;
+    const receivedHash = hash || secure_hash; // support both just in case
     console.log(`Received CPX postback:`, req.query);
 
     const APP_SECURE_HASH = process.env.APP_SECURE_HASH;
@@ -36,8 +37,8 @@ module.exports = async function handler(req, res) {
     }
 
     const expectedHash = crypto.createHash('md5').update(`${trans_id}-${APP_SECURE_HASH}`).digest('hex');
-    if (hash !== expectedHash) {
-        console.error(`Hash mismatch. Expected: ${expectedHash}, Got: ${hash}`);
+    if (receivedHash !== expectedHash) {
+        console.error(`Hash mismatch. Expected: ${expectedHash}, Got: ${receivedHash}`);
         return res.status(403).send("Forbidden");
     }
 
